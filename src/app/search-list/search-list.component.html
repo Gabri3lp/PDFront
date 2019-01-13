@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div>
+  <table *ngIf="resultLenght > 0" class="table" > 
+    <tbody>
+      <tr *ngFor="let page of result">
+        <th  class="col-sm-1 pl-4  pt-4" >
+          <button  class="btn btn-warning" (click)="highlight(page)"><i class="fa fa-star"></i></button>
+        </th>
+        <td *ngIf="!page.IsHighlighted; else highlighted">
+          <a href="{{page.Link}}">{{page.Title}} </a><br>
+          {{page.Link}}<br>
+          {{page.Snippet}} <br>
+        </td>
+        <ng-template #highlighted> 
+          <td style="background-color: khaki" >
+            <a href="{{page.Link}}">{{page.Title}} </a><br>
+            {{page.Link}}<br>
+            {{page.Snippet}} <br>
+          </td> 
+        </ng-template>
+       
+      </tr>
+    </tbody>
+  </table>
+</div>

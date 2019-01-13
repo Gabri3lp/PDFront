@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Page } from './page';
+import { SearchService } from './search.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'PdFront';
+  title = 'Inicio';
+  @Input() searchQuery = '';
+  result: Page[];
+  resultLenght = 0;
+  constructor(private searchService: SearchService){
+  }
+  
+  public search() : void {
+    this.searchService.search(this.searchQuery).subscribe(result =>
+      {
+         this.result = result;
+         this.resultLenght = result.length;
+      });
+  }
 }
