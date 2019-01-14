@@ -20,9 +20,9 @@ export class SearchService {
     
     let params = new HttpParams();
     if(page.IsHighlighted){
-      params = params.append("IsHighlighted", "true")
       params = params.append("Id", "" + page.Id)
     }else{
+      params = params.append("Id", "" + (-1))
       params = params.append("IsHighlighted", "false")
       params = params.append('Title', page.Title);
       params = params.append('Snippet', page.Snippet);
@@ -30,7 +30,7 @@ export class SearchService {
       params = params.append('Query', this.currentSearch);
     }
   
-    this.http.get(BACKEND_API_URL+"/highlight", {params: params}).subscribe(result =>{if(result) page.IsHighlighted = true;});
+    this.http.get(BACKEND_API_URL+"/highlight", {params: params}).subscribe(result =>{if(result) page.IsHighlighted = !page.IsHighlighted;});
   } 
   search(query: string): Observable<Page[]>{
     if(query == "")
