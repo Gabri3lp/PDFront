@@ -13,7 +13,6 @@ const BACKEND_API_URL = "http://localhost:8080";
 })
 export class SearchService {
   currentSearch = "";
-  searchType = "web";
   constructor(private http: HttpClient) { }
 
   highlight(page: Page) : void{
@@ -32,11 +31,11 @@ export class SearchService {
   
     this.http.get(BACKEND_API_URL+"/highlight", {params: params}).subscribe(result =>{if(result) page.IsHighlighted = !page.IsHighlighted;});
   } 
-  search(query: string): Observable<Page[]>{
+  search(query: string, searchType: string): Observable<Page[]>{
     if(query == "")
       return of([]);
       this.currentSearch = query;
-    return this.http.get<Page[]>(BACKEND_API_URL + "/" + this.searchType + "/" + query)// or any other operator
+    return this.http.get<Page[]>(BACKEND_API_URL + "/" + searchType + "/" + query)// or any other operator
 
   }
 }

@@ -6,12 +6,16 @@
               <div class="col-2 my-1">
                 <label >Googleplex!</label>
               </div>
-              <div class="col-8 ">
+              <div class="col-7 ">
                 <input type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="searchQuery"  class="form-control" placeholder="Search">
               </div>
               <div class="col-1">
                 <button (click)="search()" class="btn btn-primary mb-2">Search</button>
               </div>
+              <select class="form-control col-1" [ngModelOptions]="{standalone: true}" [(ngModel)]="searchType"  id="sel1">
+                <option value="web" >Text</option>
+                <option value="images">Images</option>
+              </select>
             </div>
           </form>
     </th>
@@ -19,7 +23,7 @@
   <tr>
     <td>
       <div id="Content">
-          <app-search-list [result]="result" [resultLenght]="resultLenght"> </app-search-list>
+          <app-search-list [result]="result" [searchType]="searchType" [resultLenght]="resultLenght"> </app-search-list>
       </div>
     </td>
   </tr>

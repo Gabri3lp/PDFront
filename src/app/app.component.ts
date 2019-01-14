@@ -12,11 +12,12 @@ export class AppComponent {
   @Input() searchQuery = '';
   result: Page[];
   resultLenght = 0;
+  searchType = "web"
   constructor(private searchService: SearchService){
   }
   
   public search() : void {
-    this.searchService.search(this.searchQuery).subscribe(result =>
+    this.searchService.search(this.searchQuery, this.searchType).subscribe(result =>
       {
          this.result = result;
          this.resultLenght = result.length;

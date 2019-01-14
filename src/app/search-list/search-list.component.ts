@@ -11,6 +11,7 @@ import { SearchService } from '../search.service';
 export class SearchListComponent implements OnInit {
   @Input() result: Page[];
   @Input() resultLenght = 0;
+  @Input() searchType = "web";
   constructor(private searchService: SearchService) { 
   }
 

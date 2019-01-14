@@ -6,6 +6,9 @@
         <th  class="col-sm-1 pl-4  pt-4" >
           <button  class="btn btn-warning" (click)="highlight(page)"><i class="fa fa-star"></i></button>
         </th>
+        <td  *ngIf="searchType == 'images'"  >
+          <img style="width:100px; height:100px;"  src="{{page.Link}}">
+        </td>
         <td *ngIf="!page.IsHighlighted; else highlighted">
           <a href="{{page.Link}}">{{page.Title}} </a><br>
           {{page.Link}}<br>
